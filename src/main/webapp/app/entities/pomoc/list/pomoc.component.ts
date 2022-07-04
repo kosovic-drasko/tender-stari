@@ -16,23 +16,23 @@ export class PomocComponent {
     this.videoplayer.nativeElement.play();
   }
   playPause() {
-    var myVideo: any = document.getElementById('my_video_1');
+    const myVideo: any = document.getElementById('my_video_1');
     if (myVideo.paused) myVideo.play();
     else myVideo.pause();
   }
 
   makeBig() {
-    var myVideo: any = document.getElementById('my_video_1');
+    const myVideo: any = document.getElementById('my_video_1');
     myVideo.width = 560;
   }
 
   makeSmall() {
-    var myVideo: any = document.getElementById('my_video_1');
+    const myVideo: any = document.getElementById('my_video_1');
     myVideo.width = 320;
   }
 
   makeNormal() {
-    var myVideo: any = document.getElementById('my_video_1');
+    const myVideo: any = document.getElementById('my_video_1');
     myVideo.width = 420;
   }
 
