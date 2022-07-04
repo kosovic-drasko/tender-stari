@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 
 import { IPomoc } from '../pomoc.model';
@@ -8,31 +8,41 @@ import { PomocService } from '../service/pomoc.service';
   selector: 'jhi-pomoc',
   templateUrl: './pomoc.component.html',
 })
-export class PomocComponent implements OnInit {
-  pomocs?: IPomoc[];
-  isLoading = false;
-
-  constructor(protected pomocService: PomocService) {}
-
-  loadAll(): void {
-    this.isLoading = true;
-
-    this.pomocService.query().subscribe({
-      next: (res: HttpResponse<IPomoc[]>) => {
-        this.isLoading = false;
-        this.pomocs = res.body ?? [];
-      },
-      error: () => {
-        this.isLoading = false;
-      },
-    });
+export class PomocComponent {
+  @ViewChild('videoPlayer', { static: false })
+  videoplayer!: ElementRef;
+  isPlay: boolean = false;
+  toggleVideo(event: any) {
+    this.videoplayer.nativeElement.play();
+  }
+  playPause() {
+    var myVideo: any = document.getElementById('my_video_1');
+    if (myVideo.paused) myVideo.play();
+    else myVideo.pause();
   }
 
-  ngOnInit(): void {
-    this.loadAll();
+  makeBig() {
+    var myVideo: any = document.getElementById('my_video_1');
+    myVideo.width = 560;
   }
 
-  trackId(_index: number, item: IPomoc): number {
-    return item.id!;
+  makeSmall() {
+    var myVideo: any = document.getElementById('my_video_1');
+    myVideo.width = 320;
+  }
+
+  makeNormal() {
+    var myVideo: any = document.getElementById('my_video_1');
+    myVideo.width = 420;
+  }
+
+  skip(value: any) {
+    let video: any = document.getElementById('my_video_1');
+    video.currentTime += value;
+  }
+
+  restart() {
+    let video: any = document.getElementById('my_video_1');
+    video.currentTime = 0;
   }
 }
