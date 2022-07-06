@@ -16,6 +16,14 @@ const specifikacijeRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
+    path: 'unos',
+    component: SpecifikacijeComponent,
+    data: {
+      oznaka: 'unosi',
+    },
+    canActivate: [UserRouteAccessService],
+  },
+  {
     path: 'new',
     component: SpecifikacijeUpdateComponent,
     resolve: {

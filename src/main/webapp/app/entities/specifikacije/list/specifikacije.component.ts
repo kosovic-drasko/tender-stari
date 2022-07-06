@@ -27,6 +27,7 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
   brojObrazac: number = 0;
   isLoading = false;
   sifraPostupka?: null;
+  unos?: any;
 
   public resourceUrlExcelDownload = SERVER_API_URL + 'api/specifikacije/file';
   public displayedColumns = [
@@ -59,8 +60,14 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
     private accountService: AccountService,
     protected dialog: MatDialog
   ) {}
+
   ngOnInit(): void {
     this.getSifraPostupka();
+    this.activatedRoute.data.subscribe(({ oznaka }) => {
+      this.unos = oznaka;
+    });
+    // eslint-disable-next-line no-console
+    console.log('============>', this.unos);
   }
 
   getSifraPostupka(): void {
