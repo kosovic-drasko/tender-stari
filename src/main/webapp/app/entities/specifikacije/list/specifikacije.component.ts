@@ -62,14 +62,28 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.getSifraPostupka();
+    this.activatedRoute.data.subscribe(({ oznaka }) => {
+      this.unos = oznaka;
+    });
+
+    if (this.unos === 'unosi') {
+      this.loadAll();
+    } else {
+      this.getSifraPostupka();
+    }
+
     this.activatedRoute.data.subscribe(({ oznaka }) => {
       this.unos = oznaka;
     });
     // eslint-disable-next-line no-console
     console.log('============>', this.unos);
   }
-
+  loadAll(): void {
+    this.specifikacijaService.query().subscribe((res: HttpResponse<ISpecifikacije[]>) => {
+      this.dataSource.data = res.body ?? [];
+      this.getTotalProcjenjena();
+    });
+  }
   getSifraPostupka(): void {
     this.isLoading = true;
     this.specifikacijaService
