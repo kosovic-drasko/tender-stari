@@ -14,6 +14,14 @@ const ponudeRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
+    path: 'unos',
+    component: PonudeComponent,
+    canActivate: [UserRouteAccessService],
+    data: {
+      oznaka: 'unosi',
+    },
+  },
+  {
     path: ':id/view',
     component: PonudeDetailComponent,
     resolve: {

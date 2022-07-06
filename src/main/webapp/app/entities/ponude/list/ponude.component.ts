@@ -34,6 +34,7 @@ export class PonudeComponent implements AfterViewInit, OnInit {
   aktivno?: boolean;
   id?: number;
   index?: number;
+  unos?: any;
   public displayedColumns = [
     'sifra postupka',
     'sifraPonude',
@@ -70,8 +71,23 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     protected dialog: MatDialog
   ) {}
   ngOnInit(): void {
-    this.getSifraPostupka();
+    this.activatedRoute.data.subscribe(({ oznaka }) => {
+      this.unos = oznaka;
+    });
+
+    if (this.unos === 'unosi') {
+      this.loadAll();
+    } else {
+      this.getSifraPostupka();
+    }
+
+    this.activatedRoute.data.subscribe(({ oznaka }) => {
+      this.unos = oznaka;
+    });
+    // eslint-disable-next-line no-console
+    console.log('============>', this.unos);
   }
+
   getSifraPostupka(): void {
     this.isLoading = true;
     this.ponudeService
@@ -89,6 +105,12 @@ export class PonudeComponent implements AfterViewInit, OnInit {
           this.isLoading = false;
         },
       });
+  }
+  loadAll(): void {
+    this.ponudeService.query().subscribe((res: HttpResponse<IPonude[]>) => {
+      this.dataSource.data = res.body ?? [];
+      this.getTotalPonudjana();
+    });
   }
   nadjiPonudjaci(): void {
     this.isLoading = true;
