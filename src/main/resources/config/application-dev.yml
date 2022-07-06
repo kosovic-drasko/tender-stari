@@ -44,13 +44,27 @@ spring:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev
   mail:
-    host: localhost
-    port: 25
-    username:
-    password:
-  messages:
-    cache-duration: PT1S # 1 second, see the ISO 8601 standard
-  thymeleaf:
+    host: smtp-mail.outlook.com
+    port: 587
+    username: drasko.kosovic@outlook.com #Replace this field with your Outlook username.
+    password: trepca123 #Replace this field with your Outlook password.
+    protocol: smtp
+    tls: true
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp-mail.outlook.com
+
+    # host: smtp.gmail.com
+    # port: 587
+    # username: drasko.kosovic@gmail.com  #Replace this field with your Gmail username.
+    # password: Drasko1959          #Replace this field with your Gmail password/App password.
+    # protocol: smtp
+    # tls: true
+    # properties.mail.smtp:
+    #     auth: true
+    #     starttls.enable: true
+    #     ssl.trust: smtp.gmail.com
     cache: false
   sleuth:
     # https://github.com/spring-projects/spring-framework/issues/27844#issuescomment-1002866885

@@ -1,23 +1,23 @@
 <div>
-  <div *ngIf="specifikacijes?.body?.length != 0">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-      <input hidden #fileInput type="file" id="file" />
-      <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="addNew()" matTooltip="Dodaj novu ponudu">Dodaj </mat-button-toggle>
-      <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Napravi formu za unos Excel" (click)="obrazacExcel()"
-        >Napravi Obrazac
-      </mat-button-toggle>
-      <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Nadji Excel fajl" (click)="fileInput.click()"
-        >Nadji Fajl
-      </mat-button-toggle>
-      <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Unesi Excel fajl" (click)="uploadFile()"
-        >Dodaj Fajl
-      </mat-button-toggle>
-    </mat-button-toggle-group>
-    <mat-form-field class="container-search">
-      <mat-icon matSuffix>search</mat-icon>
-      <input type="search" (keyup)="doFilter(box.value)" #box matInput placeholder="" />
-    </mat-form-field>
-  </div>
+  <!-- <div *ngIf="specifikacijes?.body?.length != 0"> -->
+  <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <input hidden #fileInput type="file" id="file" />
+    <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="addNew()" matTooltip="Dodaj novu ponudu">Dodaj </mat-button-toggle>
+    <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Napravi formu za unos Excel" (click)="obrazacExcel()"
+      >Napravi Obrazac
+    </mat-button-toggle>
+    <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Nadji Excel fajl" (click)="fileInput.click()"
+      >Nadji Fajl
+    </mat-button-toggle>
+    <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Unesi Excel fajl" (click)="uploadFile()"
+      >Dodaj Fajl
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+  <mat-form-field class="container-search">
+    <mat-icon matSuffix>search</mat-icon>
+    <input type="search" (keyup)="doFilter(box.value)" #box matInput placeholder="" />
+  </mat-form-field>
+  <!-- </div> -->
 
   <jhi-alert-error></jhi-alert-error>
   <jhi-alert></jhi-alert>
