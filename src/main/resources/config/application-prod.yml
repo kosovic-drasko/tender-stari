@@ -47,18 +47,6 @@ spring:
   mail:
     host: smtp-mail.outlook.com
     port: 587
-    username: kosovic.drasko@hotmail.com #Replace this field with your Outlook username.
-    password: drasko1959 #Replace this field with your Outlook password.
-    protocol: smtp
-    tls: true
-    properties.mail.smtp:
-      auth: true
-      starttls.enable: true
-      ssl.trust: smtp-mail.outlook.com
-  thymeleaf:
-    mail:
-      host: smtp-mail.outlook.com
-    port: 587
     username: drasko.kosovic@outlook.com #Replace this field with your Outlook username.
     password: trepca123 #Replace this field with your Outlook password.
     protocol: smtp
@@ -67,6 +55,7 @@ spring:
       auth: true
       starttls.enable: true
       ssl.trust: smtp-mail.outlook.com
+  thymeleaf:
     cache: true
   sleuth:
     # https://github.com/spring-projects/spring-framework/issues/27844#issuescomment-1002866885
