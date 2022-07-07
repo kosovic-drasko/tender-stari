@@ -1,10 +1,11 @@
 <div>
   <div *ngIf="ponude?.body?.length != 0">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()"
+      ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
+    </mat-button-toggle>
+    <mat-button-toggle-group *ngIf="unos" name="fontStyle" aria-label="Font Style">
       <input hidden #fileInput type="file" id="file" />
-      <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()"
-        ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
-      </mat-button-toggle>
+
       <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="addNew()" (keyup.)="getSifraPostupka()" matTooltip="Dodaj novu ponudu"
         >Dodaj
       </mat-button-toggle>

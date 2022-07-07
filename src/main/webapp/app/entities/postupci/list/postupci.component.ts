@@ -22,6 +22,7 @@ export class PostupciComponent implements OnInit, AfterViewInit {
   aktivno?: boolean;
   id?: number;
   index?: number;
+  unos?: any;
   public displayedColumns = [
     'sifra postupka',
     'opis postupka',
@@ -99,6 +100,9 @@ export class PostupciComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ oznaka }) => {
+      this.unos = oznaka;
+    });
     this.loadAll();
   }
   ngAfterViewInit(): void {

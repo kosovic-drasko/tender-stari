@@ -1,6 +1,6 @@
 <div>
   <div *ngIf="specifikacijes?.body?.length != 0">
-    <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+    <mat-button-toggle-group *ngIf="unos" name="fontStyle" aria-label="Font Style">
       <input hidden #fileInput type="file" id="file" />
       <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="addNew()" matTooltip="Dodaj novu ponudu">Dodaj </mat-button-toggle>
       <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Napravi formu za unos Excel" (click)="obrazacExcel()"

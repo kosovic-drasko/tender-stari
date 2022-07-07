@@ -14,6 +14,14 @@ const postupciRoute: Routes = [
     canActivate: [UserRouteAccessService],
   },
   {
+    path: 'unos',
+    component: PostupciComponent,
+    canActivate: [UserRouteAccessService],
+    data: {
+      oznaka: 'unosi',
+    },
+  },
+  {
     path: ':id/view',
     component: PostupciDetailComponent,
     resolve: {
