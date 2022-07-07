@@ -136,7 +136,12 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => {
-      this.getSifraPostupka(), this.getTotalProcjenjena();
+      this.getTotalProcjenjena();
+      if (this.unos === 'unosi') {
+        this.loadAll();
+      } else {
+        this.getSifraPostupka();
+      }
     });
   }
 
@@ -144,7 +149,13 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(SpecifikacijeUpdateComponent, {
       data: { Specifikacije: {}, name: (this.aktivno = false) },
     });
-    dialogRef.afterClosed().subscribe(() => this.getSifraPostupka());
+    dialogRef.afterClosed().subscribe(() => {
+      if (this.unos === 'unosi') {
+        this.loadAll();
+      } else {
+        this.getSifraPostupka();
+      }
+    });
   }
   deleteItem(i: number, id: number): void {
     this.index = i;
@@ -153,7 +164,11 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
       data: { id },
     });
     this.dialog.afterAllClosed.subscribe(() => {
-      this.getSifraPostupka();
+      if (this.unos === 'unosi') {
+        this.loadAll();
+      } else {
+        this.getSifraPostupka();
+      }
     });
   }
   ngAfterViewInit(): void {
