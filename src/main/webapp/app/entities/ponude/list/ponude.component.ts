@@ -247,9 +247,14 @@ export class PonudeComponent implements AfterViewInit, OnInit {
   uploadFile(): any {
     const formData = new FormData();
     formData.append('files', this.fileInput.nativeElement.files[0]);
-    this.ponudeService.UploadExcel(formData).subscribe((result: { toString: () => string | undefined }) => {
-      this.message = result.toString();
-      this.getSifraPostupka();
+    this.ponudeService.UploadExcel(formData).subscribe(() => {
+      this.getTotalPonudjana();
+      this.loadAll();
+      // if (this.unos === 'unosi') {
+      //   this.loadAll();
+      // } else {
+      //   this.getSifraPostupka();
+      // }
     });
   }
   deleteItem(i: number, id: number): void {

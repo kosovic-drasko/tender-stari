@@ -195,7 +195,7 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
 
     this.specifikacijaService.UploadExcel(formData).subscribe((result: { toString: () => string | undefined }) => {
       this.message = result.toString();
-      this.getSifraPostupka();
+      this.loadAll();
     });
   }
 

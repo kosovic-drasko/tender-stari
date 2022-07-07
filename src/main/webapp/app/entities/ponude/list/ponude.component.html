@@ -54,17 +54,7 @@
     <span>Nema zapisa Ponuda</span>
   </div>
 
-  <table
-    mat-table
-    id="ExampleTable"
-    matTableExporter
-    [dataSource]="dataSource"
-    matSort
-    matSortStart="desc"
-    #exporter="matTableExporter"
-    matSort
-    matSortStart="desc"
-  >
+  <table mat-table id="ExampleTable" matTableExporter [dataSource]="dataSource" matSort matSortStart="desc">
     <ng-container matColumnDef="sifra postupka">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Sifra Postupka</th>
       <td mat-cell *matCellDef="let element">{{ element.sifraPostupka }}</td>
@@ -211,7 +201,7 @@
       mat-button
       color="warn"
       (click)="deleteSifra()"
-      (click)="getSifraPostupka()"
+      (click)="loadAll()"
       (click)="sifraPonudeNull()"
       (click)="modal.close('Save click')"
     >
