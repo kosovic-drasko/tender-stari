@@ -11,8 +11,8 @@
    AS $function$
    begin
 	  if new.ponudjaci_id is null then new.ponudjaci_id=0;
-    end if; 
-     new.ponudjaci_id=new.sifra_ponudjaca; 
+    end if;
+     new.ponudjaci_id=new.sifra_ponudjaca;
       RETURN NEW;
    END;
   $function$
@@ -23,11 +23,10 @@
 
     <changeSet id="3" author="drasko">
         <sql>
-    CREATE TRIGGER "moj-triger"
-    BEFORE INSERT
-    ON public.ponude
-    FOR EACH ROW
-    EXECUTE PROCEDURE public.sifra();
+            create trigger "moj-triger" before
+            insert or update
+                on
+                public.ponude for each row execute function sifra()
     </sql>
 
     </changeSet>
