@@ -217,8 +217,16 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     const dialogRef = this.dialog.open(PonudeUpdateComponent, {
       data: { Ponude: {}, name: (this.aktivno = false) },
     });
-    dialogRef.afterClosed().subscribe(() => this.getSifraPostupka(), this.getTotalPonudjana());
+    dialogRef.afterClosed().subscribe(() => {
+      this.getTotalPonudjana;
+      if (this.unos === 'unosi') {
+        this.loadAll();
+      } else {
+        this.getSifraPostupka();
+      }
+    });
   }
+
   getTotalPonudjana(): any {
     return (this.ukupnaPonudjena = this.dataSource.filteredData.map(t => t.ponudjenaVrijednost).reduce((acc, value) => acc! + value!, 0));
   }
@@ -233,12 +241,6 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
   }
-
-  // doFilter = (iznos: string): any => {
-  //   this.dataSource.filter = iznos.trim().toLocaleLowerCase();
-  //   this.ukupnaPonudjena = this.dataSource.filteredData.map(t => t.ponudjenaVrijednost).reduce((acc, value) => acc! + value!, 0);
-  // };
-
   isAuthenticated(): boolean {
     return this.accountService.isAuthenticated();
   }
@@ -257,9 +259,15 @@ export class PonudeComponent implements AfterViewInit, OnInit {
       data: { id },
     });
     this.dialog.afterAllClosed.subscribe(() => {
-      this.getSifraPostupka();
+      this.getTotalPonudjana();
+      if (this.unos === 'unosi') {
+        this.loadAll();
+      } else {
+        this.getSifraPostupka();
+      }
     });
   }
+
   public resourceUrlExcelDownload = SERVER_API_URL + 'api/ponude/file';
 
   downloadExcel(): void {
