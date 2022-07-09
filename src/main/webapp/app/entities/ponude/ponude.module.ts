@@ -9,9 +9,18 @@ import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { JhMaterialModule } from 'app/shared/jh-material.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
-  imports: [SharedModule, PonudeRoutingModule, MatPaginatorModule, JhMaterialModule, MatTableExporterModule, MatSortModule],
+  imports: [
+    MatSidenavModule,
+    SharedModule,
+    PonudeRoutingModule,
+    MatPaginatorModule,
+    JhMaterialModule,
+    MatTableExporterModule,
+    MatSortModule,
+  ],
   declarations: [PonudeComponent, PonudeDetailComponent, PonudeUpdateComponent, PonudeDeleteDialogComponent],
   entryComponents: [PonudeDeleteDialogComponent],
   exports: [PonudeComponent],
