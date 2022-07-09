@@ -221,8 +221,14 @@ export class PonudeComponent implements AfterViewInit, OnInit {
       this.getTotalPonudjana;
       if (this.unos === 'unosi') {
         this.loadAll();
+        setTimeout(() => {
+          this.loadAll();
+        }, 1000);
       } else {
         this.getSifraPostupka();
+        setTimeout(() => {
+          this.getSifraPostupka();
+        }, 1000);
       }
     });
   }

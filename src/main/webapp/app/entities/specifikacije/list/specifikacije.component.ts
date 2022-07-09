@@ -152,8 +152,14 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
     dialogRef.afterClosed().subscribe(() => {
       if (this.unos === 'unosi') {
         this.loadAll();
+        setTimeout(() => {
+          this.loadAll();
+        }, 1000);
       } else {
         this.getSifraPostupka();
+        setTimeout(() => {
+          this.getSifraPostupka();
+        }, 1000);
       }
     });
   }
@@ -182,11 +188,17 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
   }
   doFilter = (iznos: string): any => {
     this.dataSource.filter = iznos.trim().toLocaleLowerCase();
+    // this.brisiIznos();
     this.ukupnaProcijenjena = this.dataSource.filteredData.map(t => t.procijenjenaVrijednost).reduce((acc, value) => acc! + value!, 0);
   };
 
   isAuthenticated(): boolean {
     return this.accountService.isAuthenticated();
+  }
+  brisiIznos(): void {
+    setTimeout(() => {
+      this.dataSource.filter = '';
+    }, 100);
   }
 
   uploadFile(): any {

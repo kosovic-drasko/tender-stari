@@ -89,6 +89,9 @@ export class PonudjaciComponent implements AfterViewInit, OnInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => this.loadAll());
+    setTimeout(() => {
+      this.loadAll();
+    }, 1000);
   }
 
   addNew(): any {
@@ -96,6 +99,9 @@ export class PonudjaciComponent implements AfterViewInit, OnInit {
       data: { Ponudjaci: {}, name: (this.aktivno = false) },
     });
     dialogRef.afterClosed().subscribe(() => this.loadAll());
+    setTimeout(() => {
+      this.loadAll();
+    }, 1000);
   }
 
   deleteItem(i: number, id: number): void {

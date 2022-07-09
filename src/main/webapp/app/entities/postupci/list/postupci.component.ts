@@ -79,6 +79,9 @@ export class PostupciComponent implements OnInit, AfterViewInit {
       },
     });
     dialogRef.afterClosed().subscribe(() => this.loadAll());
+    setTimeout(() => {
+      this.loadAll();
+    }, 1000);
   }
 
   addNew(): any {
@@ -86,6 +89,9 @@ export class PostupciComponent implements OnInit, AfterViewInit {
       data: { Postupci: {}, name: (this.aktivno = false) },
     });
     dialogRef.afterClosed().subscribe(() => this.loadAll());
+    setTimeout(() => {
+      this.loadAll();
+    }, 1000);
   }
 
   deleteItem(i: number, id: number): void {
