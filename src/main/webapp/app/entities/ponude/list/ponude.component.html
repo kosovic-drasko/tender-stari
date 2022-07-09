@@ -1,15 +1,34 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="side"> Sidenav content </mat-sidenav>
+  <mat-sidenav #sidenav mode="side">
+    <div>
+      <mat-form-field>
+        <input matInput [(ngModel)]="sifraPonude" matInput placeholder="Sifra Ponude" (keyup)="nadjiPoSifriPonude()" />
+        <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="sifraPonudeNull()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput [(ngModel)]="brojPartije" matInput placeholder="Broj Partije" (keyup)="nadjiPoPartiji()" />
+        <button *ngIf="brojPartije" matSuffix mat-icon-button aria-label="Clear" (click)="brojPartijeNull()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+  </mat-sidenav>
   <mat-sidenav-content>
     <div>
+      <div>
+        <button mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></button>
+
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()">
+          <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
+        </mat-button-toggle>
+      </div>
+
       <div *ngIf="ponude?.body?.length != 0">
         <mat-button-toggle-group *ngIf="unos" name="fontStyle" aria-label="Font Style">
-          <p>
-            <button mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></button>
-          </p>
-          <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()"
-            ><img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
-          </mat-button-toggle>
           <input hidden #fileInput type="file" id="file" />
 
           <mat-button-toggle
@@ -33,19 +52,6 @@
             Ukloni Ponudu</mat-button-toggle
           >
         </mat-button-toggle-group>
-
-        <mat-form-field>
-          <input matInput [(ngModel)]="sifraPonude" matInput placeholder="Sifra Ponude" (keyup)="nadjiPoSifriPonude()" />
-          <button *ngIf="sifraPonude" matSuffix mat-icon-button aria-label="Clear" (click)="sifraPonudeNull()">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput [(ngModel)]="brojPartije" matInput placeholder="Broj Partije" (keyup)="nadjiPoPartiji()" />
-          <button *ngIf="brojPartije" matSuffix mat-icon-button aria-label="Clear" (click)="brojPartijeNull()">
-            <mat-icon>close</mat-icon>
-          </button>
-        </mat-form-field>
       </div>
       <div>
         <!-- <mat-form-field>
