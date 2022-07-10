@@ -1,3 +1,4 @@
+import { BodovanjeComponent } from './../bodovanje/bodovanje.component';
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from 'app/shared/shared.module';
@@ -18,7 +19,14 @@ import { HvalePonudeComponent } from '../hvale-ponude/list/hvale-ponude.componen
 
 @NgModule({
   imports: [SharedModule, TenderiHomeRoutingModule, MatTabsModule, JhMaterialModule, SpecifikacijeModule, PonudeModule],
-  declarations: [TenderiHomeComponent, HideMeDirective, VrednovanjeComponent, PrvorangiraniComponent, HvalePonudeComponent],
+  declarations: [
+    TenderiHomeComponent,
+    HideMeDirective,
+    VrednovanjeComponent,
+    PrvorangiraniComponent,
+    HvalePonudeComponent,
+    BodovanjeComponent,
+  ],
   providers: [DecimalPipe],
 })
 export class TenderiHomeModule {}
