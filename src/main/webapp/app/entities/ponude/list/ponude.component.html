@@ -19,15 +19,12 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div>
-      <div>
+      <div *ngIf="ponude?.body?.length != 0">
         <button mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></button>
 
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()">
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
-      </div>
-
-      <div *ngIf="ponude?.body?.length != 0">
         <mat-button-toggle-group *ngIf="unos" name="fontStyle" aria-label="Font Style">
           <input hidden #fileInput type="file" id="file" />
 
