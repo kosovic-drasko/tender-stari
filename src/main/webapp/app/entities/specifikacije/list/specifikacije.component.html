@@ -1,4 +1,3 @@
-{{ trazi }}
 <mat-sidenav-container class="example-container">
   <mat-sidenav #sidenav mode="side">
     <div>
@@ -11,10 +10,10 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <button mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></button>
-
     <div>
       <div *ngIf="specifikacijes?.body?.length != 0">
+        <mat-button-toggle class="nadji" mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
+
         <mat-button-toggle-group *ngIf="unos" name="fontStyle" aria-label="Font Style">
           <input hidden #fileInput type="file" id="file" />
           <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" (click)="addNew()" matTooltip="Dodaj novu ponudu">Dodaj </mat-button-toggle>
