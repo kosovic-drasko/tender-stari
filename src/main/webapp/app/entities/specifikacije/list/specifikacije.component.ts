@@ -28,6 +28,7 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
   isLoading = false;
   sifraPostupka?: null;
   unos?: any;
+  trazi?: any;
 
   public resourceUrlExcelDownload = SERVER_API_URL + 'api/specifikacije/file';
   public displayedColumns = [
@@ -186,9 +187,9 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
       .map(t => t.procijenjenaVrijednost)
       .reduce((acc, value) => acc! + value!, 0));
   }
-  doFilter = (iznos: string): any => {
-    this.dataSource.filter = iznos.trim().toLocaleLowerCase();
-    // this.brisiIznos();
+  doFilter = (): any => {
+    this.dataSource.filter = this.trazi.trim().toLocaleLowerCase();
+
     this.ukupnaProcijenjena = this.dataSource.filteredData.map(t => t.procijenjenaVrijednost).reduce((acc, value) => acc! + value!, 0);
   };
 
@@ -196,9 +197,8 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
     return this.accountService.isAuthenticated();
   }
   brisiIznos(): void {
-    setTimeout(() => {
-      this.dataSource.filter = '';
-    }, 100);
+    this.trazi = '';
+    this.dataSource.filter = '';
   }
 
   uploadFile(): any {
