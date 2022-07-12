@@ -30,7 +30,7 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./specifikacije/specifikacije.module').then(m => m.SpecifikacijeModule),
       },
       {
-        path: 'bodovanje',
+        path: 'vrednovanje',
         data: { pageTitle: 'tenderApp.vrednovanje.home.title' },
         loadChildren: () => import('./vrednovanje/vrednovanje.module').then(m => m.VrednovanjeModule),
       },

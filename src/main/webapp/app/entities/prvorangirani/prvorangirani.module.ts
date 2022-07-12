@@ -7,7 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { JhMaterialModule } from '../../shared/jh-material.module';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatSortModule } from '@angular/material/sort';
-import { MatSidenavModule } from '@angular/material/sidenav/sidenav-module';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
