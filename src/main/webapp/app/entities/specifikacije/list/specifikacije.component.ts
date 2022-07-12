@@ -140,8 +140,14 @@ export class SpecifikacijeComponent implements AfterViewInit, OnInit {
       this.getTotalProcjenjena();
       if (this.unos === 'unosi') {
         this.loadAll();
+        setTimeout(() => {
+          this.loadAll();
+        }, 1000);
       } else {
         this.getSifraPostupka();
+        setTimeout(() => {
+          this.getSifraPostupka();
+        }, 1000);
       }
     });
   }

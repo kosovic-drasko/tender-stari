@@ -29,7 +29,7 @@
             <column name="farmaceutski_oblik_lijeka" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
-            <column name="jacina_lijeka" type="varchar(255)">
+            <column name="jacina_lijeka" type="varchar(5000)">
                 <constraints nullable="true" />
             </column>
             <column name="trazena_kolicina" type="integer">
