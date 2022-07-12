@@ -12,7 +12,7 @@
   <mat-sidenav-content>
     <div>
       <div *ngIf="specifikacijes?.body?.length != 0">
-        <mat-button-toggle class="nadji" mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
+        <mat-button-toggle mat-button (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
 
         <mat-button-toggle-group *ngIf="unos" name="fontStyle" aria-label="Font Style">
           <input hidden #fileInput type="file" id="file" />

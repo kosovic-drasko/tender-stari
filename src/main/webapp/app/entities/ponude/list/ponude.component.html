@@ -20,13 +20,8 @@
   <mat-sidenav-content>
     <div>
       <div *ngIf="ponude?.body?.length != 0">
-        <mat-button-toggle class="nadji" (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
-        <mat-button-toggle
-          class="nadji"
-          *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']"
-          matTooltip=" Excel fajl"
-          (click)="downloadExcel()"
-        >
+        <mat-button-toggle (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
+        <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()">
           <!-- <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" /> -->
           <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" />
         </mat-button-toggle>
