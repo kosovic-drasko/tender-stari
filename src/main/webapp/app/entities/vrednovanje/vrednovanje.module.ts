@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
 import { VrednovanjeComponent } from './list/vrednovanje.component';
 
@@ -21,5 +21,6 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatSidenavModule,
   ],
   declarations: [VrednovanjeComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class VrednovanjeModule {}

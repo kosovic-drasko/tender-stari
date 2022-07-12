@@ -14,7 +14,7 @@ import { PonudeService } from 'app/entities/ponude/service/ponude.service';
   styleUrls: ['./vrednovanje.scss'],
 })
 export class VrednovanjeComponent implements AfterViewInit, OnInit {
-  vrednovanjes?: HttpResponse<IVrednovanje[]>;
+  vrednovanjes?: HttpResponse<IVrednovanje[]> | null;
   ukupnaPonudjena?: number | null | undefined;
   ukupnaProcijenjena?: number | null | undefined;
   nadjiPonudjaca?: any;
@@ -48,6 +48,8 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ) {}
   ngOnInit(): void {
     this.getSifraPostupka();
+    // eslint-disable-next-line no-console
+    console.log('To je vrednovanje ', this.vrednovanjes);
   }
 
   transformDecimal(num: string | number): any {

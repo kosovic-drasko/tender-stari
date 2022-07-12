@@ -59,8 +59,6 @@ export class PonudeComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @Input() postupak?: any;
   @ViewChild('fileInput') fileInput: any;
-  message: string | undefined;
-  obrisano?: string;
 
   constructor(
     protected ponudeService: PonudeService,
@@ -81,11 +79,11 @@ export class PonudeComponent implements AfterViewInit, OnInit {
       this.getSifraPostupka();
     }
 
-    this.activatedRoute.data.subscribe(({ oznaka }) => {
-      this.unos = oznaka;
-    });
-    // eslint-disable-next-line no-console
-    console.log('============>', this.unos);
+    // this.activatedRoute.data.subscribe(({ oznaka }) => {
+    //   this.unos = oznaka;
+    // });
+    // // eslint-disable-next-line no-console
+    // console.log('============>', this.unos);
   }
 
   getSifraPostupka(): void {

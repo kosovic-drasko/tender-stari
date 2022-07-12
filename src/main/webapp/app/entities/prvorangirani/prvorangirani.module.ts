@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
 import { PrvorangiraniComponent } from './list/prvorangirani.component';
 import { PrvorangiraniRoutingModule } from './route/prvorangirani-routing.module';
@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { JhMaterialModule } from '../../shared/jh-material.module';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSidenavModule } from '@angular/material/sidenav/sidenav-module';
 
 @NgModule({
   imports: [
@@ -17,9 +18,11 @@ import { MatSortModule } from '@angular/material/sort';
     JhMaterialModule,
     MatTableExporterModule,
     MatSortModule,
+    MatSidenavModule,
   ],
   declarations: [PrvorangiraniComponent],
   entryComponents: [],
   exports: [PrvorangiraniComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
 })
 export class PrvorangiraniModule {}

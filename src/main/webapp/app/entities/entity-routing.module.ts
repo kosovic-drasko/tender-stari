@@ -29,6 +29,11 @@ import { RouterModule } from '@angular/router';
         data: { pageTitle: 'tenderApp.specifikacije.home.title' },
         loadChildren: () => import('./specifikacije/specifikacije.module').then(m => m.SpecifikacijeModule),
       },
+      {
+        path: 'bodovanje',
+        data: { pageTitle: 'tenderApp.vrednovanje.home.title' },
+        loadChildren: () => import('./vrednovanje/vrednovanje.module').then(m => m.VrednovanjeModule),
+      },
 
       {
         path: 'pomoc',
