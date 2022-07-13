@@ -10,7 +10,6 @@ import { HideMeDirective } from './hide-me.directive';
 import { PonudeModule } from '../ponude/ponude.module';
 import { SpecifikacijeModule } from '../specifikacije/specifikacije.module';
 import { DecimalPipe } from '@angular/common';
-import { HvalePonudeComponent } from '../hvale-ponude/list/hvale-ponude.component';
 import { VrednovanjeModule } from '../vrednovanje/vrednovanje.module';
 
 @NgModule({
