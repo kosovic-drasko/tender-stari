@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators';
-
 import { IPonude, Ponude } from '../ponude.model';
 import { PonudeService } from '../service/ponude.service';
 import { IPonudjaci } from '../../ponudjaci/ponudjaci.model';
@@ -85,14 +84,14 @@ export class PonudeUpdateComponent implements OnInit {
 
   protected subscribeToSaveResponse(result: Observable<HttpResponse<IPonude>>): void {
     result.pipe(finalize(() => this.onSaveFinalize())).subscribe({
-      // next: () => this.onSaveSuccess(),
+      next: () => this.onSaveSuccess(),
       error: () => this.onSaveError(),
     });
   }
 
-  // protected onSaveSuccess(): void {
-  //   this.previousState();
-  // }
+  protected onSaveSuccess(): void {
+    this.previousState();
+  }
   close(): any {
     this.dialogRef.close();
   }

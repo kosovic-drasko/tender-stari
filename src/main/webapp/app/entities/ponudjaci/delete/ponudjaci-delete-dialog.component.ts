@@ -21,7 +21,5 @@ export class PonudjaciDeleteDialogComponent {
 
   confirmDelete(): void {
     this.ponudjaciiService.deletePonudjac(this.data.id);
-    // eslint-disable-next-line no-console
-    console.log('To je iz delete dialog  ');
   }
 }
