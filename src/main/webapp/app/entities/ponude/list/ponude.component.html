@@ -19,7 +19,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <div>
-      <div *ngIf="ponude?.body?.length != 0">
+      <div *ngIf="ponudes?.body?.length != 0">
         <mat-button-toggle (click)="sidenav.toggle()"><mat-icon>search</mat-icon></mat-button-toggle>
         <mat-button-toggle *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_USER']" matTooltip=" Excel fajl" (click)="downloadExcel()">
           <!-- <img src="../../../../content/images/icons8-microsoft-excel-48.png" alt="" /> -->
@@ -47,7 +47,7 @@
           >Dodaj Fajl
         </mat-button-toggle>
 
-        <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Ukloni cijelu ponudu" (click)="open(content1)">
+        <mat-button-toggle *jhiHasAnyAuthority="'ROLE_ADMIN'" matTooltip="Ukloni cijelu ponudu" (click)="open(contentBrisiPoSifriPonude)">
           Ukloni Ponudu</mat-button-toggle
         >
       </mat-button-toggle-group>
@@ -66,7 +66,7 @@
     <jhi-alert-error></jhi-alert-error>
     <jhi-alert></jhi-alert>
 
-    <div class="alert alert-warning" id="no-result" *ngIf="ponude?.body?.length === 0">
+    <div class="alert alert-warning" id="no-result" *ngIf="ponudes?.body?.length === 0">
       <span>Nema zapisa Ponuda</span>
     </div>
 
@@ -143,16 +143,10 @@
             *jhiHasAnyAuthority="'ROLE_ADMIN'"
             id="izabrano"
             type="submit"
-            (click)="open(content)"
+            (click)="open(contentBrisiSelect)"
             >delete</mat-icon
           >
         </th>
-        <td mat-cell *matCellDef="let element; let i = index">
-          <section class="example-section">
-            <mat-checkbox *jhiHasAnyAuthority="'ROLE_ADMIN'" class="example-margin" (click)="updateSelected(element.id)"></mat-checkbox>
-          </section>
-        </td>
-
         <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
       <ng-container matColumnDef="delete" stickyEnd>
@@ -196,7 +190,7 @@
 
     <mat-paginator class="mat-paginator-sticky" [pageSizeOptions]="[20, 30, 50, 100]" showFirstLastButtons> </mat-paginator>
 
-    <ng-template #content let-modal>
+    <ng-template #contentBrisiSelect let-modal>
       <div class="modal-body">
         <h4>Dali ste sigurni da zeliet izbrisete selektovane partije</h4>
       </div>
@@ -208,7 +202,7 @@
       </div>
     </ng-template>
 
-    <ng-template #content1 let-modal>
+    <ng-template #contentBrisiPoSifriPonude let-modal>
       <div class="modal-body">
         <h4>Dali ste sigurni da zelite izbrisete cijelu ponudu</h4>
       </div>

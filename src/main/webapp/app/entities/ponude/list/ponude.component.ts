@@ -20,7 +20,7 @@ import { PonudeUpdateComponent } from '../update/ponude-update.component';
   styleUrls: ['./ponude.component.scss'],
 })
 export class PonudeComponent implements AfterViewInit, OnInit {
-  ponude?: HttpResponse<IPonude[]>;
+  ponudes?: HttpResponse<IPonude[]>;
   postupci?: IPostupci[];
   sifraPonudjaca?: number;
   account: Account | null = null;
@@ -48,7 +48,7 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     // 'kreirao',
     // 'datum kreiranja',
     // 'zadnji izmjenio',
-    'selected',
+    // 'selected',
     'edit',
     'delete',
   ];
@@ -78,12 +78,6 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     } else {
       this.getSifraPostupka();
     }
-
-    // this.activatedRoute.data.subscribe(({ oznaka }) => {
-    //   this.unos = oznaka;
-    // });
-    // // eslint-disable-next-line no-console
-    // console.log('============>', this.unos);
   }
 
   getSifraPostupka(): void {
@@ -96,7 +90,7 @@ export class PonudeComponent implements AfterViewInit, OnInit {
         next: (res: HttpResponse<IPonude[]>) => {
           this.isLoading = false;
           this.dataSource.data = res.body ?? [];
-          this.ponude = res;
+          this.ponudes = res;
           this.getTotalPonudjana();
         },
         error: () => {
@@ -120,8 +114,7 @@ export class PonudeComponent implements AfterViewInit, OnInit {
         next: (res: HttpResponse<IPonude[]>) => {
           this.isLoading = false;
           this.dataSource.data = res.body ?? [];
-          this.ponude = res;
-
+          this.ponudes = res;
           this.getTotalPonudjana();
         },
         error: () => {
@@ -238,9 +231,6 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     this.ponudeService.deleteSelected();
     this.getSifraPostupka();
   }
-  updateSelected(id: number): any {
-    this.ponudeService.updatePersonSelected(id);
-  }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -254,11 +244,6 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     this.ponudeService.UploadExcel(formData).subscribe(() => {
       this.getTotalPonudjana();
       this.loadAll();
-      // if (this.unos === 'unosi') {
-      //   this.loadAll();
-      // } else {
-      //   this.getSifraPostupka();
-      // }
     });
   }
   deleteItem(i: number, id: number): void {
@@ -290,10 +275,10 @@ export class PonudeComponent implements AfterViewInit, OnInit {
     this.ponudeService.deleteSifraPonude(this.sifraPonude).subscribe();
     this.getSifraPostupka();
   }
-  open(content: any): any {
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
+  open(contentBrisiSelect: any): any {
+    this.modalService.open(contentBrisiSelect, { ariaLabelledBy: 'modal-basic-title' });
   }
-  open1(content1: any): any {
-    this.modalService.open(content1, { ariaLabelledBy: 'modal-basic-title' });
+  open1(contentBrisiPoSifriPonude: any): any {
+    this.modalService.open(contentBrisiPoSifriPonude, { ariaLabelledBy: 'modal-basic-title' });
   }
 }

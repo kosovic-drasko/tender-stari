@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input, OnChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, Input, ViewChild, OnInit } from '@angular/core';
 import { IHvalePonude } from '../hvale-ponude.model';
 import { HvalePonudeService } from '../service/hvale-ponude.service';
 import { MatTableDataSource } from '@angular/material/table';
@@ -11,7 +11,7 @@ import { HttpResponse } from '@angular/common/http';
   templateUrl: './hvale-ponude.component.html',
   styleUrls: ['./hvale-ponude.component.scss'],
 })
-export class HvalePonudeComponent implements AfterViewInit, OnChanges {
+export class HvalePonudeComponent implements AfterViewInit, OnInit {
   hvalePonudes?: any;
   ukupnaProcijenjena?: number | null | undefined;
   isLoading = false;
@@ -33,6 +33,9 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   @Input() postupak: any;
 
   constructor(protected hvaleService: HvalePonudeService) {}
+  ngOnInit(): void {
+    this.getTotalProcijenjena();
+  }
 
   public getSifraPostupka(): void {
     this.hvaleService.hvali(this.postupak).subscribe((res: IHvalePonude[]) => {
@@ -51,7 +54,7 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
         next: (res: HttpResponse<IHvalePonude[]>) => {
           this.isLoading = false;
           this.dataSource.data = res.body ?? [];
-          // this.getTotalPonudjana();
+          this.getTotalProcijenjena();
         },
         error: () => {
           this.isLoading = false;
@@ -69,17 +72,9 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
     this.dataSource.paginator = this.paginator;
   }
 
-  public doFilter = (value: string): any => {
-    this.dataSource.filter = value.trim().toLocaleLowerCase();
-  };
-
   getTotalProcijenjena(): any {
     return (this.ukupnaProcijenjena = this.dataSource.filteredData
       .map(t => t.procijenjenaVrijednost)
       .reduce((acc, value) => acc! + value!, 0));
-  }
-
-  ngOnChanges(): void {
-    this.getSifraPostupka;
   }
 }

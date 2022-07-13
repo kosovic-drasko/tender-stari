@@ -17,13 +17,8 @@ export class PonudeService {
   public resourceUrl = this.applicationConfigService.getEndpointFor('api/ponudes');
   public resourceUrlExcelUpload = SERVER_API_URL + 'api/upload';
   public resourceUrlSifraPonudeDelete = this.applicationConfigService.getEndpointFor('api/ponude-delete');
-  public resourceUrlPonudePonudjaci = this.applicationConfigService.getEndpointFor('api/ponude_ponudjaci');
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
-
-  updatePersonSelected(id: number): void {
-    this.http.put(`${this.urlUpdateSeleced}/${id}`, null).subscribe();
-  }
 
   deleteSifraPonude(sifraPonude: number): any {
     return this.http.delete(`${this.resourceUrlSifraPonudeDelete}/${sifraPonude}`);
@@ -38,14 +33,6 @@ export class PonudeService {
 
   update(ponude: IPonude): Observable<EntityResponseType> {
     return this.http.put<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, ponude, { observe: 'response' });
-  }
-
-  partialUpdate(ponude: IPonude): Observable<EntityResponseType> {
-    return this.http.patch<IPonude>(`${this.resourceUrl}/${getPonudeIdentifier(ponude) as number}`, ponude, { observe: 'response' });
-  }
-
-  find(id: number): Observable<EntityResponseType> {
-    return this.http.get<IPonude>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
