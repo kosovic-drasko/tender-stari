@@ -20,7 +20,7 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "entitySuffix": "",
-    "herokuAppName": "tenderi-montefarm",
+    "herokuAppName": "tender-montefarm",
     "herokuDeployType": "git",
     "herokuJavaVersion": "18",
     "jhiPrefix": "jhi",
