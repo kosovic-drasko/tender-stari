@@ -13,11 +13,11 @@ import { HttpResponse } from '@angular/common/http';
 })
 export class PrvorangiraniComponent implements OnInit, AfterViewInit {
   prvorangiranis?: HttpResponse<IPrvorangirani[]>;
-  // ponude_ponudjaci?: IPonudePonudjaci[];
   ukupnaPonudjena?: number | null | undefined;
   ukupnaProcijenjena?: number | null | undefined;
   nadjiPonudjaca?: any;
   isLoading = false;
+  sifraPonude?: any;
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -74,5 +74,28 @@ export class PrvorangiraniComponent implements OnInit, AfterViewInit {
           this.isLoading = false;
         },
       });
+  }
+  nadjiPoSifriPonude(): void {
+    this.isLoading = true;
+    this.prvorangiraniService
+      .query({
+        'sifraPonude.in': this.sifraPonude,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IPrvorangirani[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.getTotalPonudjana();
+        },
+        error: () => {
+          this.isLoading = false;
+        },
+      });
+  }
+
+  sifraPonudeNull(): void {
+    this.sifraPonude = null;
+    this.sifraPonude = '';
+    this.getSifraPostupka();
   }
 }

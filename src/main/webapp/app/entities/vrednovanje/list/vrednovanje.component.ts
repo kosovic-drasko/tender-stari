@@ -19,6 +19,7 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
   ukupnaProcijenjena?: number | null | undefined;
   nadjiPonudjaca?: any;
   isLoading = false;
+  sifraPonude?: any;
   public displayedColumns = [
     'sifra postupka',
     'sifra ponude',
@@ -73,6 +74,29 @@ export class VrednovanjeComponent implements AfterViewInit, OnInit {
           this.isLoading = false;
         },
       });
+  }
+  nadjiPoSifriPonude(): void {
+    this.isLoading = true;
+    this.vrednovanjeService
+      .query({
+        'sifraPonude.in': this.sifraPonude,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IVrednovanje[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          this.getTotalPonudjana();
+        },
+        error: () => {
+          this.isLoading = false;
+        },
+      });
+  }
+
+  sifraPonudeNull(): void {
+    this.sifraPonude = null;
+    this.sifraPonude = '';
+    this.getSifraPostupka();
   }
   getTotalPonudjana(): any {
     return (this.ukupnaPonudjena = this.dataSource.filteredData.map(t => t.ponudjenaVrijednost).reduce((acc, value) => acc! + value!, 0));
