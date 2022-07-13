@@ -1,3 +1,4 @@
+import { HvalePonudeModule } from './../hvale-ponude/hvale-ponude.module';
 import { PrvorangiraniModule } from './../prvorangirani/prvorangirani.module';
 import { NgModule } from '@angular/core';
 import { SharedModule } from 'app/shared/shared.module';
@@ -22,8 +23,9 @@ import { VrednovanjeModule } from '../vrednovanje/vrednovanje.module';
     PonudeModule,
     VrednovanjeModule,
     PrvorangiraniModule,
+    HvalePonudeModule,
   ],
-  declarations: [TenderiHomeComponent, HideMeDirective, HvalePonudeComponent],
+  declarations: [TenderiHomeComponent, HideMeDirective],
   providers: [DecimalPipe],
 })
 export class TenderiHomeModule {}
