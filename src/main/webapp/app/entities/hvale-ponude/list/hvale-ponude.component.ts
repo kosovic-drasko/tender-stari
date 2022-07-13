@@ -4,6 +4,7 @@ import { HvalePonudeService } from '../service/hvale-ponude.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator } from '@angular/material/paginator';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'jhi-hvale-ponude',
@@ -14,6 +15,7 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   hvalePonudes?: any;
   ukupnaProcijenjena?: number | null | undefined;
   isLoading = false;
+  sifraPonude?: any;
   public displayedColumns = [
     'sifra postupka',
     'broj partije',
@@ -32,14 +34,36 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
 
   constructor(protected hvaleService: HvalePonudeService) {}
 
-  public getSifraHvali(): void {
+  public getSifraPostupka(): void {
     this.hvaleService.hvali(this.postupak).subscribe((res: IHvalePonude[]) => {
       this.dataSource.data = res;
       this.hvalePonudes = res;
       this.getTotalProcijenjena();
     });
   }
+  nadjiPoSifriPonude(): void {
+    this.isLoading = true;
+    this.hvaleService
+      .query({
+        'sifraPonude.in': this.sifraPonude,
+      })
+      .subscribe({
+        next: (res: HttpResponse<IHvalePonude[]>) => {
+          this.isLoading = false;
+          this.dataSource.data = res.body ?? [];
+          // this.getTotalPonudjana();
+        },
+        error: () => {
+          this.isLoading = false;
+        },
+      });
+  }
 
+  sifraPonudeNull(): void {
+    this.sifraPonude = null;
+    this.sifraPonude = '';
+    this.getSifraPostupka();
+  }
   ngAfterViewInit(): void {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
@@ -56,6 +80,6 @@ export class HvalePonudeComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(): void {
-    this.getSifraHvali();
+    this.getSifraPostupka;
   }
 }

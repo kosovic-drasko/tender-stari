@@ -7,9 +7,11 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTableExporterModule } from 'mat-table-exporter';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   imports: [
+    MatSidenavModule,
     SharedModule,
     HvalePonudeRoutingModule,
     JhMaterialModule,
