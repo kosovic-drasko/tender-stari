@@ -17,9 +17,10 @@ export class HvalePonudeService {
 
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
-  hvali(sifra: number): any {
-    return this.http.get(`${this.resourceUrlHvali}/${sifra}`);
+  hvali(sifra: number): Observable<EntityArrayResponseType> {
+    return this.http.get<IHvalePonude[]>(`${this.resourceUrlHvali}/${sifra}`, { observe: 'response' });
   }
+
   create(hvalePonude: IHvalePonude): Observable<EntityResponseType> {
     return this.http.post<IHvalePonude>(this.resourceUrl, hvalePonude, { observe: 'response' });
   }

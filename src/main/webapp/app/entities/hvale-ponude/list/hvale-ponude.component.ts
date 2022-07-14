@@ -1,5 +1,5 @@
+import { IHvalePonude } from './../hvale-ponude.model';
 import { AfterViewInit, Component, Input, ViewChild, OnInit } from '@angular/core';
-import { IHvalePonude } from '../hvale-ponude.model';
 import { HvalePonudeService } from '../service/hvale-ponude.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -33,13 +33,15 @@ export class HvalePonudeComponent implements AfterViewInit, OnInit {
   @Input() postupak: any;
 
   constructor(protected hvaleService: HvalePonudeService) {}
+
   ngOnInit(): void {
+    this.getSifraPostupka();
     this.getTotalProcijenjena();
   }
 
   public getSifraPostupka(): void {
-    this.hvaleService.hvali(this.postupak).subscribe((res: IHvalePonude[]) => {
-      this.dataSource.data = res;
+    this.hvaleService.hvali(this.postupak).subscribe((res: HttpResponse<IHvalePonude[]>) => {
+      this.dataSource.data = res.body ?? [];
       this.hvalePonudes = res;
       this.getTotalProcijenjena();
     });
